@@ -151,6 +151,10 @@ table {
   color: var(--active-btns);
 }
 
+.text-gray {
+  color: rgb(159, 164, 169);
+}
+
 .bg {
   background-color: rgb(51, 51, 51);
 }
@@ -424,6 +428,10 @@ nav {
 .active {
   color: #fffdfd;
   background-color: var(--right-answer);
+}
+
+.active-1 {
+  color: var(--black)
 }
 
 .pagination {

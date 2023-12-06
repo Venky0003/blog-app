@@ -126,7 +126,7 @@ class Home extends React.Component {
                     </li>
                     {selectedTag !== 'global' && (
                       <li className="m-top-30">
-                        <i class="fa-solid fa-hashtag icon-hash"></i>
+                        <i className="fa-solid fa-hashtag icon-hash"></i>
                         <a
                           className="text-black fs-16 fw-600"
                           href="/"
