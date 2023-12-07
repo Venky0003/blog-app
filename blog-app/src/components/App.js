@@ -2,7 +2,6 @@ import Header from './Header';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
-import Article from './Posts';
 import NoMatch from './NoMatch';
 import { Switch, Route } from 'react-router-dom';
 
