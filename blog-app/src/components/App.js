@@ -2,7 +2,7 @@ import Header from './Header';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
-import Article from './Article';
+import Article from './Posts';
 import NoMatch from './NoMatch';
 import { Switch, Route } from 'react-router-dom';
 
@@ -20,10 +20,6 @@ function App() {
         <Route path="/signup">
           <Signup />
         </Route>
-        <Route
-          path="/article/:slug"
-          render={(props) => <Article {...props} />}
-        ></Route>
         <Route path="*">
           <NoMatch />
         </Route>
