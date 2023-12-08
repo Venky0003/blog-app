@@ -49,6 +49,7 @@ class Sidebar extends React.Component {
                 <span
                   style={{ display: 'inline-block', margin: '5px' }}
                   key={tag}
+                  onClick={() => this.props.addTab(tag)}
                 >
                   {tag}
                 </span>

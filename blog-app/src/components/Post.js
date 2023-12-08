@@ -1,14 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 // import { Link } from 'react-router-dom';
 
 function Post(props) {
-  const { author, createdAt, title, description, body,tagList } = props; //add it to favouritesCount
+  const { author, createdAt, title, description, body,tagList,slug } = props; //add it to favouritesCount
 
  
   return (
     <article>
       <div className="height-100">
-        <div className="width-full bg padding">
+        <Link to={`/article/${slug}`}>
+      <div className="width-full bg padding">
           <h2 className=" fs-22 fw-600 font-playfair text-white padding-30">
             {title}
           </h2>
@@ -33,6 +35,7 @@ function Post(props) {
             ))}
           </p>
         </div>
+        </Link>        
       </div>
     </article>
   );
