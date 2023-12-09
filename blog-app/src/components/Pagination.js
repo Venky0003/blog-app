@@ -12,8 +12,9 @@ function Pagination(props) {
 
   return (
     <>
-      <div>
+      <div className="m-top-50 m-bottom-100 text-center">
         <button
+          className="m-right-10 btn btn-tertiary"
           onClick={() =>
             updateCurrentPageIndex(activePage - 1 < 1 ? 1 : activePage - 1)
           }
@@ -22,14 +23,17 @@ function Pagination(props) {
         </button>
         {pagesArray.map((page) => (
           <button
-          key={page}
+            key={page}
             onClick={() => updateCurrentPageIndex(page)}
-            className={`btn ${activePage === page ? 'active' : ''}`}
+            className={`btn fw-600 text-gray ${
+              activePage === page ? 'active-1' : ''
+            }`}
           >
             {page}
           </button>
         ))}
         <button
+          className="m-left-10 btn btn-tertiary"
           onClick={() =>
             updateCurrentPageIndex(
               activePage + 1 > numberOfPages ? numberOfPages : activePage + 1

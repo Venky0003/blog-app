@@ -1,0 +1,23 @@
+.form {
+  width: 450px;
+//   height: 50%;
+  margin: {
+    top: 50px;
+    left: auto;
+    right: auto;
+  }
+//   border: 1px solid black;
+  padding: 25px;
+  background-color: rgb(202, 239, 253);
+}
+
+.form-control {
+  display: block;
+  height:35px;
+  width: 280px;
+  margin: 10px auto;
+}
+
+.error{
+    color: $error;
+}

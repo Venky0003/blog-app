@@ -1,0 +1,487 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: "Merriweather", serif;
+  font-weight: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 1340px;
+  max-width: 100%;
+  padding: 0 32px;
+  margin: 0 auto;
+}
+
+.container-1 {
+  width: 1360px;
+  max-width: 100%;
+  padding: 0 32px;
+  margin: 0 auto;
+}
+
+.width-full {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.flex-70 {
+  flex: 0 1 75%;
+}
+
+.flex-25 {
+  flex: 0 1 22%;
+}
+
+.btn {
+  padding: 4px 12px;
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary {
+  background-color: #ffffff;
+  border: none;
+  padding: 5px 15px;
+  color: #003366;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-secondary {
+  color: #41e207;
+  border: 1px solid #41e207;
+  padding: 2px 5px;
+}
+.btn-tertiary {
+  color: rgb(248, 248, 248);
+  background-color: rgb(51, 50, 50);
+}
+
+:disabled {
+  background-color: rgb(220, 212, 212);
+  color: rgb(184, 181, 181);
+}
+
+.m-top-10 {
+  margin-top: 10px;
+}
+
+.m-top-15 {
+  margin-top: 15px;
+}
+
+.m-top-20 {
+  margin-top: 20px;
+}
+
+.m-top-25 {
+  margin-top: 25px;
+}
+
+.m-top-30 {
+  margin-top: 30px;
+}
+
+.m-top-50 {
+  margin-top: 50px;
+}
+
+.m-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.m-bottom-15 {
+  margin-bottom: 15px;
+}
+
+.m-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.m-bottom-25 {
+  margin-bottom: 25px;
+}
+
+.m-bottom-30 {
+  margin-bottom: 30px;
+}
+
+.m-bottom-50 {
+  margin-bottom: 50px;
+}
+
+.m-bottom-100 {
+  margin-bottom: 100px;
+}
+
+.m-left-10 {
+  margin-left: 10px;
+}
+
+.m-left-15 {
+  margin-left: 15px;
+}
+
+.m-left-20 {
+  margin-left: 20px;
+}
+
+.m-left-25 {
+  margin-left: 25px;
+}
+
+.m-left-30 {
+  margin-left: 30px;
+}
+
+.m-right-5 {
+  margin-right: 5px;
+}
+
+.m-right-10 {
+  margin-right: 10px;
+}
+
+.m-right-15 {
+  margin-right: 15px;
+}
+
+.m-right-20 {
+  margin-right: 20px;
+}
+
+.m-right-25 {
+  margin-right: 25px;
+}
+
+.m-right-30 {
+  margin-right: 30px;
+}
+
+/* fonts sizes */
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.fs-22 {
+  font-size: 22px;
+}
+
+.fs-25 {
+  font-size: 25px;
+}
+
+.fs-28 {
+  font-size: 28px;
+}
+
+.fs-32 {
+  font-size: 32px;
+}
+
+/* font weights */
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.text-gray {
+  color: rgb(198, 202, 202);
+}
+
+.active {
+  color: #41e207;
+}
+
+.active-1 {
+  color: #ffffff;
+  background-color: #41e207;
+}
+
+.text-black {
+  color: #000000;
+}
+
+.text-links {
+  color: #0000ff;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.bg {
+  background-color: rgb(51, 51, 51);
+}
+
+.two-line-limit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 50px;
+}
+
+.height {
+  max-height: 100px;
+}
+
+.box {
+  border: 1px solid black;
+  padding: 2px 6px;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.header {
+  box-shadow: 0px 5px 10px -4px rgba(114, 113, 113, 0.3);
+  color: black;
+}
+.header nav {
+  height: 80px;
+  color: var(--white);
+}
+
+.padding-all {
+  padding: 40px 135px;
+}
+
+.tag-list {
+  border: 1px solid black;
+  padding: 3px 15px;
+  border-radius: 15px;
+}
+
+.form {
+  width: 450px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+  background-color: rgb(202, 239, 253);
+}
+
+.form-control {
+  display: block;
+  height: 35px;
+  width: 280px;
+  margin: 10px auto;
+}
+
+.error {
+  color: #ff0000;
+}
+
+.tags {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.tag {
+  border: 1px solid rgb(0, 0, 0);
+  padding: 3px 7px;
+  border-radius: 15px;
+  background-color: rgb(246, 244, 244);
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */

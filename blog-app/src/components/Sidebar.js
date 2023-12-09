@@ -47,6 +47,7 @@ class Sidebar extends React.Component {
             {tags.map((tag) => {
               return (
                 <span
+                className='tag fs-14'
                   style={{ display: 'inline-block', margin: '5px' }}
                   key={tag}
                   onClick={() => this.props.addTab(tag)}

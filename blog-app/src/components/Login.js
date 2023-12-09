@@ -16,7 +16,7 @@ class Login extends React.Component {
     let { name, value } = event.target;
     let errors = { ...this.state.errors };
 
-    validate(errors,name,value)
+    validate(errors, name, value);
     this.setState({ [name]: value, errors });
   };
 
@@ -27,36 +27,38 @@ class Login extends React.Component {
   render() {
     const { email, password, errors } = this.state;
     return (
-      <div className="container height-90 text-center">
-        <form className="login p-top-30">
-          <h2>Enter Login Details</h2>
-          <Link to="/signup">Need an account ?</Link>
+      <div className="container ">
+        <form className="form text-center">
+          <h2>Signin</h2>
+          <Link to="/signup">
+            <p className="fs-15">Need an account ?</p>
+          </Link>
           <input
             name="email"
             type="email"
-            // required
-            className="login-inputs"
+            className="form-control"
             placeholder="Enter Email"
             onChange={this.handleChange}
             value={email}
           />
-          <span className="error">{errors.email}</span>
+          <span className="error fs-14">{errors.email}</span>
           <input
             name="password"
             type="password"
             required
-            // minlength="6"
-            className="login-inputs"
-            placeholder="Enter Password eg 123ghn"
+            className="form-control"
+            placeholder="Enter Password"
             onChange={this.handleChange}
             value={password}
           />
-          <span className="error">{errors.password}</span>
+          <span className="error fs-14">{errors.password}</span>
           <input
             type="submit"
+         
             disabled={errors.email || errors.password}
-            value="Login"
-            className="btn-primary"
+            value="Signin"
+            className="m-top-15 fs-16 btn-primary"
+        
           />
         </form>
       </div>

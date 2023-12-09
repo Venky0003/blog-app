@@ -4,21 +4,23 @@ import { Link } from 'react-router-dom';
 function FeedNav(props) {
   return (
     <nav>
-      <ul>
-        <li onClick={props.removeTab}>
-          <Link className={props.activeTab === '' && 'active-1'} to="/">
+      <ul className='m-top-30 m-bottom-10 flex'>
+        <li className='fs-18 fw-600 text-black' onClick={props.removeTab}>
+          <Link className={props.activeTab === '' ? 'active':'text-black'} to="/">
             Global Feed
           </Link>
         </li>
         {props.activeTab && (
-          <li >
-            <Link className={props.activeTab  && 'active-1'} to="/">
+          <li className='m-left-15 fs-18 fw-600 text-black'>
+            <Link className={props.activeTab  && 'active'} to="/">
               #{props.activeTab}
             </Link>
           </li>
         )}
       </ul>
+      <hr/>
     </nav>
+    
   );
 }
 

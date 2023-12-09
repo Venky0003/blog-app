@@ -78,8 +78,8 @@ class Home extends React.Component {
     } = this.state;
     return (
       <main>
-        <div>
-          <section>
+        <section className="flex justify-between container">
+          <div className='flex-70'>
             <FeedNav activeTab={activeTab} removeTab={this.removeTab} />
             <Posts articles={articles} error={error} />
             <Pagination
@@ -88,9 +88,11 @@ class Home extends React.Component {
               activePage={activePage}
               updateCurrentPageIndex={this.updateCurrentPageIndex}
             />
-          </section>
+          </div>
+          <div className='flex-25'>
           <Sidebar addTab={this.addTab} />
-        </div>
+          </div>
+        </section>
       </main>
     );
   }

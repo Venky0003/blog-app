@@ -22,8 +22,6 @@ function App() {
           <Signup />
         </Route>
         <Route path="/article/:slug" component={SinglePsot}/>
-          {/* <SinglePsot />
-        </Route> */}
         <Route path="*">
           <NoMatch />
         </Route>

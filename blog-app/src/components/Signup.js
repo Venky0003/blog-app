@@ -16,10 +16,9 @@ class Signup extends React.Component {
   handleChange = (event) => {
     let { name, value } = event.target;
     let errors = { ...this.state.errors };
-    validate(errors,name,value)
+    validate(errors, name, value);
     this.setState({ [name]: value, errors });
-  }
- 
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -29,43 +28,50 @@ class Signup extends React.Component {
     const { username, email, password, errors } = this.state;
 
     return (
-      <div className="container height-90 text-center">
-        <form className="signup login p-top-30 height-50">
-          <h2>Create Account</h2>
-          <Link to="/login">Have an account ?</Link>
+      <div className="container text-center">
+        <form className="form">
+          <h2 className='fs-18 fw-500'>Create Account</h2>
+          <Link to="/login">
+            <p className="fs-14">Have an account ?</p>
+          </Link>
           <input
             name="username"
             type="username"
             value={username}
             onChange={this.handleChange}
-            className="login-inputs"
+            className="form-control"
             placeholder="Enter Username"
           />
-          <span>{errors.username}</span>
+          <span className="error fs-14">{errors.username}</span>
           <input
             name="email"
             type="email"
             value={email}
             onChange={this.handleChange}
-            className="login-inputs"
+            className="form-control"
             placeholder="Enter Email"
           />
-          <span>{errors.email}</span>
+          <span className="error fs-14">{errors.email}</span>
           <input
             name="password"
             type="password"
             value={password}
             onChange={this.handleChange}
-            className="login-inputs"
+            className="form-control"
             placeholder="Enter Password"
           />
-          <span>{errors.password}</span>
+          <span className="error fs-14">{errors.password}</span>
 
-          <input type='submit'className="btn-primary" value="Sign-Up" disabled={errors.username || errors.password || errors.email} />
+          <input
+            type="submit"
+            className="btn-primary  m-top-15"
+            value="Sign-Up"
+            disabled={errors.username || errors.password || errors.email}
+          />
         </form>
       </div>
     );
   }
 }
 
-export default Signup
+export default Signup;
