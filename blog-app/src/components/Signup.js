@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import validate from '../utils/validate';
+import { ROOT_URL } from '../utils/constant';
 
 class Signup extends React.Component {
   state = {
@@ -12,7 +13,15 @@ class Signup extends React.Component {
       email: '',
       password: '',
     },
+    people: [],
   };
+
+  
+  handleSubmit = (event) => {
+    event.preventDefault();
+   
+  };
+
   handleChange = (event) => {
     let { name, value } = event.target;
     let errors = { ...this.state.errors };
@@ -20,17 +29,37 @@ class Signup extends React.Component {
     this.setState({ [name]: value, errors });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  signup = () => {
+    const { username, email, password } = this.state;
+    fetch(ROOT_URL + `/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          username,
+          email,
+          password,
+        },
+      }),
+    })
+      .then((res) => res.json)
+      .then(console.log)
+      .catch((error) => {
+        console.error('Error:', error); // Handle errors
+      });
+      window.location.href = '/';
   };
 
   render() {
     const { username, email, password, errors } = this.state;
-
+    // this.signup();
+    // console.log(username,email,password)
     return (
       <div className="container text-center">
-        <form className="form">
-          <h2 className='fs-18 fw-500'>Create Account</h2>
+        <form className="form" onSubmit={this.signup}>
+          <h2 className="fs-18 fw-500">Create Account</h2>
           <Link to="/login">
             <p className="fs-14">Have an account ?</p>
           </Link>

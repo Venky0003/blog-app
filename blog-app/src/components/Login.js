@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import validate from '../utils/validate';
+// import { articlesUrl } from '../utils/constant';
+import { ROOT_URL } from '../utils/constant';
+// const loginData = {
+//   email: 'example@email.com',
+//   password: 'yourpassword'
+// }
 
 class Login extends React.Component {
   state = {
@@ -12,6 +18,10 @@ class Login extends React.Component {
     },
   };
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   handleChange = (event) => {
     let { name, value } = event.target;
     let errors = { ...this.state.errors };
@@ -20,15 +30,43 @@ class Login extends React.Component {
     this.setState({ [name]: value, errors });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  login = () => {
+    //  e.preventDefault();
+    // const { email, password } = this.state;
+
+    // console.log(email);
+    fetch(ROOT_URL + `/users/login`, {
+      method: 'POST',
+      hedaers: {
+        'Content-Type': 'application/json',
+        // Authorization:`Token ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        user: {
+          email:this.state.email,
+          password:this.state.password,
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+      // window.location.href = '/';
+      })
+      .catch((error) => {
+        console.error('Error:', error); // Handle errors
+      });
+    window.location.href = '/';
   };
 
   render() {
     const { email, password, errors } = this.state;
+    this.login();
     return (
       <div className="container ">
-        <form className="form text-center">
+        {' '}
+        <ul></ul>
+        <form className="form text-center" onSubmit={this.login}>
           <h2>Signin</h2>
           <Link to="/signup">
             <p className="fs-15">Need an account ?</p>
@@ -54,11 +92,9 @@ class Login extends React.Component {
           <span className="error fs-14">{errors.password}</span>
           <input
             type="submit"
-         
             disabled={errors.email || errors.password}
             value="Signin"
             className="m-top-15 fs-16 btn-primary"
-        
           />
         </form>
       </div>
