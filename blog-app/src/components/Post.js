@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Post(props) {
-  const { author, createdAt, description, title, slug, favoritesCount } = props; //add it to favoritesCount
+  const { author, createdAt, description, title, slug, favoritesCount } = props; 
 
   return (
     <article className="m-top-25">
@@ -28,10 +28,8 @@ function Post(props) {
                 </div>
               </div>
               <p className="btn btn-secondary">
-                <i class="fa-solid fa-heart m-right-5"></i>
-                <span className="fs-14 fw-600">
-                  {favoritesCount}
-                </span>
+                <i className="fa-solid fa-heart m-right-5"></i>
+                <span className="fs-14 fw-600">{favoritesCount}</span>
               </p>
             </div>
             <h2 className=" fs-22 fw-600  padding-30 two-line-limit height">

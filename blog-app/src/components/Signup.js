@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import validate from '../utils/validate';
+import { signupURL } from '../utils/constant';
+import { withRouter } from 'react-router';
 
 class Signup extends React.Component {
   state = {
@@ -12,7 +14,9 @@ class Signup extends React.Component {
       email: '',
       password: '',
     },
+    people: [],
   };
+
   handleChange = (event) => {
     let { name, value } = event.target;
     let errors = { ...this.state.errors };
@@ -22,6 +26,34 @@ class Signup extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { username, email, password } = this.state;
+    fetch(signupURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          username,
+          email,
+          password,
+        },
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then(({ errors }) => {
+            return Promise.reject(errors);
+          });
+        }
+        return res.json();
+      })
+      .then(({ user }) => {
+        this.props.updateUser(user);
+        this.setState({ username: '', password: '', email: '' });
+        this.props.history.push('/');
+      })
+      .catch((errors) => this.setState({ errors }));
   };
 
   render() {
@@ -29,8 +61,8 @@ class Signup extends React.Component {
 
     return (
       <div className="container text-center">
-        <form className="form">
-          <h2 className='fs-18 fw-500'>Create Account</h2>
+        <form className="form" onSubmit={this.handleSubmit}>
+          <h2 className="fs-18 fw-500">Create Account</h2>
           <Link to="/login">
             <p className="fs-14">Have an account ?</p>
           </Link>
@@ -74,4 +106,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);

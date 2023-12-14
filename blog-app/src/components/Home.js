@@ -1,7 +1,6 @@
 import React from 'react';
 import Posts from './Posts';
 import Pagination from './Pagination';
-// import Loader from './Loader';
 import FeedNav from './FeedNav';
 import Sidebar from './Sidebar';
 import { articlesUrl } from '../utils/constant';
