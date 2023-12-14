@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-function Header() {
+function Header(props) {
   return (
     <header className="header">
       <div className="container-1">
@@ -9,33 +9,79 @@ function Header() {
               The Source
             </NavLink>
           </div>
-          <div>
-            <NavLink
-              to="/"
-              activeClassName="active"
-              exact
-              className="m-left-15 text-gray fs-14 fw-500"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/login"
-              activeClassName="active"
-              className="m-left-15 text-gray fs-14  fw-500"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/signup"
-              activeClassName="active"
-              className="m-left-15 text-gray fs-14 fw-500"
-            >
-              Sign up
-            </NavLink>
-          </div>
+          {props.isLoggedIn ? <AuthHeader /> : <NonAuthHeader />}
         </nav>
       </div>
     </header>
+  );
+}
+
+function NonAuthHeader() {
+  return (
+    <>
+      <div>
+        <NavLink
+          to="/"
+          activeClassName="active"
+          exact
+          className="m-left-15 text-gray fs-14 fw-500"
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/login"
+          activeClassName="active"
+          className="m-left-15 text-gray fs-14  fw-500"
+        >
+          Login
+        </NavLink>
+        <NavLink
+          to="/signup"
+          activeClassName="active"
+          className="m-left-15 text-gray fs-14 fw-500"
+        >
+          Sign up
+        </NavLink>
+      </div>
+    </>
+  );
+}
+
+function AuthHeader() {
+  return (
+    <>
+      <div>
+        <NavLink
+          to="/"
+          activeClassName="active"
+          exact
+          className="m-left-15 text-gray fs-14 fw-500"
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/new-post"
+          activeClassName="active"
+          className="m-left-15 text-gray fs-14  fw-500"
+        >
+          New Article
+        </NavLink>
+        <NavLink
+          to="/settings"
+          activeClassName="active"
+          className="m-left-15 text-gray fs-14 fw-500"
+        >
+          Settings
+        </NavLink>
+        <NavLink
+          to="/profile"
+          activeClassName="active"
+          className="m-left-15 text-gray fs-14 fw-500"
+        >
+          Profile
+        </NavLink>
+      </div>
+    </>
   );
 }
 

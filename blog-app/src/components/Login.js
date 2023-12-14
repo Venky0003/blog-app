@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import validate from '../utils/validate';
-// import { articlesUrl } from '../utils/constant';
-import { ROOT_URL } from '../utils/constant';
-// const loginData = {
-//   email: 'example@email.com',
-//   password: 'yourpassword'
-// }
+import { withRouter } from 'react-router';
+import { loginURL } from '../utils/constant';
+
 
 class Login extends React.Component {
   state = {
@@ -18,10 +15,6 @@ class Login extends React.Component {
     },
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
   handleChange = (event) => {
     let { name, value } = event.target;
     let errors = { ...this.state.errors };
@@ -30,43 +23,53 @@ class Login extends React.Component {
     this.setState({ [name]: value, errors });
   };
 
-  login = () => {
-    //  e.preventDefault();
-    // const { email, password } = this.state;
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { email, password } = this.state;
 
-    // console.log(email);
-    fetch(ROOT_URL + `/users/login`, {
+    fetch(loginURL, {
       method: 'POST',
-      hedaers: {
+      headers: {
         'Content-Type': 'application/json',
-        // Authorization:`Token ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({
         user: {
-          email:this.state.email,
-          password:this.state.password,
+          email,
+          password,
         },
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-      // window.location.href = '/';
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then(({ errors }) => {
+            return Promise.reject(errors);
+          });
+        }
+        return res.json();
       })
-      .catch((error) => {
-        console.error('Error:', error); // Handle errors
+      .then(({ user }) => {
+        this.props.updateUser(user);
+        this.props.history.push('/');
+      })
+      .catch((_errors) => {
+        this.setState((prevState) => {
+          return {
+            ...prevState,
+            errors: {
+              ...prevState.errors,
+              email: 'Email or Password incorrect!',
+            },
+          };
+        });
       });
-    window.location.href = '/';
   };
 
   render() {
     const { email, password, errors } = this.state;
-    this.login();
+
     return (
       <div className="container ">
-        {' '}
-        <ul></ul>
-        <form className="form text-center" onSubmit={this.login}>
+        <form className="form text-center" onSubmit={this.handleSubmit}>
           <h2>Signin</h2>
           <Link to="/signup">
             <p className="fs-15">Need an account ?</p>
@@ -102,4 +105,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

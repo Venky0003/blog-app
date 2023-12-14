@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import { articlesUrl } from '../utils/constant';
 import Loader from './Loader';
 
@@ -42,7 +41,7 @@ class SinglePsot extends React.Component {
     }
     return (
       <>
-        <article  className='m-bottom-100'>
+        <article className="m-bottom-100">
           <div className="bg width-full text-white padding-all">
             <h2 className=" fs-25 fw-600">{article.title}</h2>
             <p className="fs-14 m-top-10">{article.author.username}</p>
@@ -53,7 +52,7 @@ class SinglePsot extends React.Component {
 
             <p className="m-top-30">
               {article.tagList.map((tag, index) => (
-                <span  key={index} className="tag-list fs-16 m-right-15 ">
+                <span key={index} className="tag-list fs-16 m-right-15 ">
                   {tag}
                 </span>
               ))}

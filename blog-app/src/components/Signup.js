@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import validate from '../utils/validate';
-import { ROOT_URL } from '../utils/constant';
+import { signupURL } from '../utils/constant';
+import { withRouter } from 'react-router';
 
 class Signup extends React.Component {
   state = {
@@ -16,12 +17,6 @@ class Signup extends React.Component {
     people: [],
   };
 
-  
-  handleSubmit = (event) => {
-    event.preventDefault();
-   
-  };
-
   handleChange = (event) => {
     let { name, value } = event.target;
     let errors = { ...this.state.errors };
@@ -29,9 +24,10 @@ class Signup extends React.Component {
     this.setState({ [name]: value, errors });
   };
 
-  signup = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     const { username, email, password } = this.state;
-    fetch(ROOT_URL + `/users`, {
+    fetch(signupURL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,21 +40,28 @@ class Signup extends React.Component {
         },
       }),
     })
-      .then((res) => res.json)
-      .then(console.log)
-      .catch((error) => {
-        console.error('Error:', error); // Handle errors
-      });
-      window.location.href = '/';
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then(({ errors }) => {
+            return Promise.reject(errors);
+          });
+        }
+        return res.json();
+      })
+      .then(({ user }) => {
+        this.props.updateUser(user);
+        this.setState({ username: '', password: '', email: '' });
+        this.props.history.push('/');
+      })
+      .catch((errors) => this.setState({ errors }));
   };
 
   render() {
     const { username, email, password, errors } = this.state;
-    // this.signup();
-    // console.log(username,email,password)
+
     return (
       <div className="container text-center">
-        <form className="form" onSubmit={this.signup}>
+        <form className="form" onSubmit={this.handleSubmit}>
           <h2 className="fs-18 fw-500">Create Account</h2>
           <Link to="/login">
             <p className="fs-14">Have an account ?</p>
@@ -103,4 +106,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
