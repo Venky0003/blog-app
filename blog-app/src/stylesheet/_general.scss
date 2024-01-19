@@ -98,6 +98,9 @@ a {
 }
 
 // margins
+.m-center{
+  margin: 0 auto;
+}
 .m-top-10 {
   margin-top: 10px;
 }
@@ -216,6 +219,9 @@ a {
 }
 
 // text-colors
+.text-light{
+  color: rgb(176, 174, 174);
+}
 .text-gray {
   color: rgb(198, 202, 202);
 }
@@ -229,9 +235,15 @@ a {
   background-color: $right-answer;
 }
 
+.active-2 {
+  color: $black;
+}
+
+
 .text-black {
   color: $black;
 }
+
 
 .text-links {
   color: $links;
@@ -257,6 +269,8 @@ a {
 .height {
   max-height: 100px;
 }
+
+
 
 .box {
   border: 1px solid black;

@@ -235,6 +235,10 @@ a {
   color: rgb(184, 181, 181);
 }
 
+.m-center {
+  margin: 0 auto;
+}
+
 .m-top-10 {
   margin-top: 10px;
 }
@@ -381,6 +385,10 @@ a {
   font-weight: 700;
 }
 
+.text-light {
+  color: rgb(176, 174, 174);
+}
+
 .text-gray {
   color: rgb(198, 202, 202);
 }
@@ -392,6 +400,10 @@ a {
 .active-1 {
   color: #ffffff;
   background-color: #41e207;
+}
+
+.active-2 {
+  color: #000000;
 }
 
 .text-black {
@@ -484,4 +496,55 @@ img {
   border-radius: 15px;
   background-color: rgb(246, 244, 244);
   cursor: pointer;
+}
+
+.form-add-article {
+  width: 75%;
+  margin: 50px auto;
+  padding: 15px;
+}
+
+.form-control-1 {
+  display: block;
+  height: 40px;
+  width: 100%;
+  margin: 15px auto;
+}
+
+.width-55 {
+  width: 55%;
+}
+
+.height-30 {
+  height: 0%;
+}
+
+.height-200 {
+  height: 100px;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.add-btn {
+  color: white;
+  background-color: #0aa70a;
+  padding: 5px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.hero {
+  height: 250px;
+  background-color: rgb(235, 232, 232);
+  padding: 60px;
+  font-size: 25px;
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }/*# sourceMappingURL=style.css.map */

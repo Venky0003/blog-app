@@ -9,7 +9,11 @@ function Header(props) {
               The Source
             </NavLink>
           </div>
-          {props.isLoggedIn ? <AuthHeader /> : <NonAuthHeader />}
+          {props.isLoggedIn ? (
+            <AuthHeader user={props.user} />
+          ) : (
+            <NonAuthHeader />
+          )}
         </nav>
       </div>
     </header>
@@ -47,7 +51,7 @@ function NonAuthHeader() {
   );
 }
 
-function AuthHeader() {
+function AuthHeader(props) {
   return (
     <>
       <div>
@@ -74,11 +78,11 @@ function AuthHeader() {
           Settings
         </NavLink>
         <NavLink
-          to="/profile"
+          to={`/profiles/${props.user.username}`}
           activeClassName="active"
           className="m-left-15 text-gray fs-14 fw-500"
         >
-          Profile
+          {props.user.username}
         </NavLink>
       </div>
     </>

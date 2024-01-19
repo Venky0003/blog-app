@@ -68,7 +68,7 @@ class Signup extends React.Component {
           </Link>
           <input
             name="username"
-            type="username"
+            type="text"
             value={username}
             onChange={this.handleChange}
             className="form-control"

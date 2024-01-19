@@ -1,0 +1,42 @@
+.form-add-article {
+  width: 75%;
+  margin: 50px auto;
+  //   border: 1px solid black;
+  padding: 15px;
+}
+
+
+
+.form-control-1 {
+  display: block;
+  height: 40px;
+  width: 100%;
+  margin: 15px auto;
+}
+
+.width-55{
+  width: 55%;
+
+}
+
+.height-30 {
+  height: 0%;
+}
+
+
+.height-200 {
+  height: 100px;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.add-btn {
+  color: white;
+  background-color: $active-btns;
+  padding: 5px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+}
