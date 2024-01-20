@@ -1,8 +1,9 @@
 import React from 'react';
 import { articlesUrl } from '../utils/constant';
 import Loader from './Loader';
+import { withRouter, Link } from 'react-router-dom';
 
-class SinglePsot extends React.Component {
+class SinglePost extends React.Component {
   state = {
     article: null,
     error: '',
@@ -58,10 +59,23 @@ class SinglePsot extends React.Component {
               ))}
             </p>
           </section>
+          {this.props.user === null ? (
+            <footer className='container m-top-50 text-center'>
+              <div>
+                <p className='fs-18'>
+                  <Link className='active' to="/login">Sign in</Link> or
+                   <Link className='active' to="/signup"> Sign up</Link> to add comments on this
+                  article
+                </p>
+              </div>
+            </footer>
+          ) : (
+            ''
+          )}
         </article>
       </>
     );
   }
 }
 
-export default SinglePsot;
+export default withRouter(SinglePost);

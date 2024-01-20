@@ -1,6 +1,7 @@
 import React from 'react';
 import { addArticleURL, localStorageKey } from '../utils/constant';
 import { withRouter } from 'react-router';
+import validateForm from '../utils/validateForm';
 
 class NewPost extends React.Component {
   state = {
@@ -8,12 +9,18 @@ class NewPost extends React.Component {
     description: '',
     body: '',
     tagList: '',
-    errors: '',
+    errors: {
+      title: '',
+      description: '',
+      body: '',
+      tagList: '',
+    },
   };
   handleChange = (event) => {
-    let { name, value } = event.target;
-
-    this.setState({ [name]: value });
+    let { name, value} = event.target;
+    let errors = { ...this.state.errors };
+    validateForm(errors, name, value);
+    this.setState({ [name]: value, errors });
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -42,21 +49,24 @@ class NewPost extends React.Component {
         }
         return res.json();
       })
-      .then((response) => {
-        if (response.article && response.article.slug) {
-          this.props.history.push(`/article/${response.article.slug}`);
-        } else {
-          console.error('Error creating article: Slug not found');
-        }
+      .then(({ article }) => {
+        console.log(article);
+        this.setState({
+          title: '',
+          description: '',
+          body: '',
+          tagList: '',
+        });
+        this.props.history.push('/');
       })
-
-      .catch((error) => {
-        console.log('Error creating article:', error);
+      .catch((errors) => {
+        this.setState({ errors });
+        console.log('Error creating article:', errors);
       });
   };
 
   render() {
-    const { title, description, body, tagList } = this.state;
+    const { title, description, body, tagList, errors } = this.state;
     return (
       <>
         <div className="container text-center">
@@ -70,6 +80,8 @@ class NewPost extends React.Component {
               onChange={this.handleChange}
               placeholder="Article Title"
             />
+            <span className="error fs-14">{errors.title}</span>
+
             <input
               name="description"
               type="text"
@@ -79,6 +91,7 @@ class NewPost extends React.Component {
               className="form-control-1 fs-15"
               placeholder="What's this article about"
             />
+            <span className="error fs-14">{errors.description}</span>
             <textarea
               name="body"
               rows="10"
@@ -90,6 +103,7 @@ class NewPost extends React.Component {
               className="form-control-1 height-30 fs-15"
               placeholder="Write about your article(in markdown)"
             ></textarea>
+            <span className="error fs-14">{errors.body}</span>
             <input
               name="tagList"
               type="text"

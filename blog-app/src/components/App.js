@@ -4,7 +4,7 @@ import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import NoMatch from './NoMatch';
-import SinglePsot from './SinglePost';
+import SinglePost from './SinglePost';
 import FullPageSpinner from './FullPageSpinner';
 import NewPost from './NewPost';
 import Profile1 from './Profile';
@@ -66,7 +66,10 @@ class App extends React.Component {
             updateUser={this.updateUser}
           />
         ) : (
-          <UnauthenticatedApp updateUser={this.updateUser} />
+          <UnauthenticatedApp
+            user={this.state.user}
+            updateUser={this.updateUser}
+          />
         )}
       </>
     );
@@ -86,7 +89,10 @@ function AuthenticatedApp(props) {
         <Route path="/settings">
           <Settings user={props.user} updateUser={props.updateUser} />
         </Route>
-        <Route path="/article/:slug" component={SinglePsot} />
+        
+        <Route path="/article/:slug">
+          <SinglePost user={props.user} />
+        </Route>
         <Route
           path="/profiles/:username"
           render={(routeProps) => (
@@ -114,7 +120,9 @@ function UnauthenticatedApp(props) {
         <Route path="/signup">
           <Signup updateUser={props.updateUser} />
         </Route>
-        <Route path="/article/:slug" component={SinglePsot} />
+        <Route path="/article/:slug">
+          <SinglePost user={props.user} />
+        </Route>
         <Route path="/profiles/:username" component={Profile1} />
         <Route path="*">
           <NoMatch />
