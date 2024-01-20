@@ -35,7 +35,7 @@ class Login extends React.Component {
       body: JSON.stringify({
         user: {
           email,
-          password,
+          password, 
         },
       }),
     })

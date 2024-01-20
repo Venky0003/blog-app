@@ -4,14 +4,13 @@ import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import NoMatch from './NoMatch';
-import SinglePsot from './SinglePost';
+import SinglePost from './SinglePost';
 import FullPageSpinner from './FullPageSpinner';
 import NewPost from './NewPost';
-import Profile from './Profile';
+import Profile1 from './Profile';
 import Settings from './Settings';
 import { Switch, Route } from 'react-router-dom';
 import { localStorageKey, userVerifyURL } from '../utils/constant';
-
 
 class App extends React.Component {
   state = {
@@ -46,6 +45,7 @@ class App extends React.Component {
 
   updateUser = (user) => {
     this.setState({ isLoggedIn: true, user, isVerifying: false });
+
     localStorage.setItem(localStorageKey, user.token);
   };
 
@@ -61,33 +61,44 @@ class App extends React.Component {
       <>
         <Header isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
         {this.state.isLoggedIn ? (
-          <AuthenticatedApp />
+          <AuthenticatedApp
+            user={this.state.user}
+            updateUser={this.updateUser}
+          />
         ) : (
-          <UnauthenticatedApp updateUser={this.updateUser} />
+          <UnauthenticatedApp
+            user={this.state.user}
+            updateUser={this.updateUser}
+          />
         )}
       </>
     );
   }
 }
 
-function AuthenticatedApp() {
+function AuthenticatedApp(props) {
   return (
     <>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home user={props.user} />
         </Route>
-
         <Route path="/new-post">
           <NewPost />
         </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
         <Route path="/settings">
-          <Settings />
+          <Settings user={props.user} updateUser={props.updateUser} />
         </Route>
-        <Route path="/article/:slug" component={SinglePsot} />
+        
+        <Route path="/article/:slug">
+          <SinglePost user={props.user} />
+        </Route>
+        <Route
+          path="/profiles/:username"
+          render={(routeProps) => (
+            <Profile1 {...routeProps} user={props.user} />
+          )}
+        />
         <Route path="*">
           <NoMatch />
         </Route>
@@ -109,7 +120,10 @@ function UnauthenticatedApp(props) {
         <Route path="/signup">
           <Signup updateUser={props.updateUser} />
         </Route>
-        <Route path="/article/:slug" component={SinglePsot} />
+        <Route path="/article/:slug">
+          <SinglePost user={props.user} />
+        </Route>
+        <Route path="/profiles/:username" component={Profile1} />
         <Route path="*">
           <NoMatch />
         </Route>
