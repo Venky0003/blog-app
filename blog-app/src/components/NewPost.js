@@ -22,6 +22,7 @@ class NewPost extends React.Component {
     validateForm(errors, name, value);
     this.setState({ [name]: value, errors });
   };
+  
   handleSubmit = (event) => {
     event.preventDefault();
     const { title, description, body, tagList } = this.state;

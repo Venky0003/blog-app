@@ -9,8 +9,10 @@ import FullPageSpinner from './FullPageSpinner';
 import NewPost from './NewPost';
 import Profile1 from './Profile';
 import Settings from './Settings';
+// import Comments from './Comments';
 import { Switch, Route } from 'react-router-dom';
 import { localStorageKey, userVerifyURL } from '../utils/constant';
+import EditArticles from './EditArticles';
 
 class App extends React.Component {
   state = {
@@ -89,7 +91,6 @@ function AuthenticatedApp(props) {
         <Route path="/settings">
           <Settings user={props.user} updateUser={props.updateUser} />
         </Route>
-        
         <Route path="/article/:slug">
           <SinglePost user={props.user} />
         </Route>
@@ -99,6 +100,9 @@ function AuthenticatedApp(props) {
             <Profile1 {...routeProps} user={props.user} />
           )}
         />
+        <Route path="/article/:slug/edit">
+          <EditArticles user={props.user} />
+        </Route>
         <Route path="*">
           <NoMatch />
         </Route>

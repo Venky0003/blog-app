@@ -1,7 +1,7 @@
 import React from 'react';
 import Loader from './Loader';
-
 import Post from './Post';
+
 function Posts(props) {
   const { articles, error } = props;
   if (error) {
@@ -19,7 +19,13 @@ function Posts(props) {
   if (articles.length < 1) {
     return <h2>No Element found</h2>;
   }
-  return articles.map((article) => <Post key={article.slug} {...article} />);
+  return (
+    <div>
+      {articles.map((article) => (
+        <Post key={article.slug} {...article} />
+      ))}
+    </div>
+  );
 }
 
 export default Posts;

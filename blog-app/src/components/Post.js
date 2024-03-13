@@ -11,6 +11,7 @@ function Post(props) {
           <div className="flex justify-between align-center">
             <div className="m-bottom-15">
               <div className="flex align-center">
+              {/* {author && <p className="fs-14 m-top-10"> */}
                 <Link to={`/profiles/${author.username}`}>
                   <div className="m-right-5 m-top-10">
                     <img
@@ -20,6 +21,7 @@ function Post(props) {
                     />
                   </div>
                 </Link>
+                {/* {author.username}</p>} */}
                 <Link to={`/profiles/${author.username}`}>
                   <div>
                     <h4 className="fs-16 m-top-10 text-black ">

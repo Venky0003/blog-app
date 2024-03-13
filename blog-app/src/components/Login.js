@@ -4,11 +4,10 @@ import validate from '../utils/validate';
 import { withRouter } from 'react-router';
 import { loginURL } from '../utils/constant';
 
-
 class Login extends React.Component {
   state = {
-    email: '',
-    password: '',
+    email: 'venkat1@gmail.com',
+    password: 'venkat123',
     errors: {
       email: '',
       password: '',
@@ -35,7 +34,7 @@ class Login extends React.Component {
       body: JSON.stringify({
         user: {
           email,
-          password, 
+          password,
         },
       }),
     })
