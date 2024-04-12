@@ -59,7 +59,7 @@ class Comments extends React.Component {
     event.preventDefault();
     const { body } = this.state;
     let slug = this.props.match.params.slug;
-    // fetch(`${addArticleURL}/${slug}/comments`, {
+
     fetch(addArticleURL + '/' + slug + '/comments', {
       method: 'POST',
       headers: {
@@ -129,42 +129,9 @@ class Comments extends React.Component {
     return (
       <>
         <div>
-          {comments && comments.length > 0 ? (
-            <ul>
-              <h4>Comments</h4>
-              {comments.map((comment) => (
-                <li key={comment.id}>
-                  <div>
-                    <p className="blue text-base">{comment.body}</p>
-                    <address className="text-xs capitalize">
-                      {comment.author.username}
-                    </address>
-                    <span className="text-xs -mt-4">
-                      {comment.createdAt.slice(0, 10)}
-                    </span>
-                  </div>
-                  {user && user.username === comment.author.username ? (
-                    <button
-                      onClick={() => {
-                        this.handleDelete(comment.id);
-                      }}
-                      className="text-red-500 m-left-15 text-xs hover:scale-125"
-                    >
-                      <i className="fa-solid fa-trash"></i>
-                    </button>
-                  ) : (
-                    ''
-                  )}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No comments available.</p>
-          )}
-
-          {/* Render comment submission form only if user is logged in */}
+          <h4 className="m-top-30 fs-18 fw-600">Comments</h4>
           {user && user.token && (
-            <fieldset>
+            <fieldset className="m-bottom-10">
               <form onSubmit={this.handleSubmit}>
                 <input
                   name="body"
@@ -177,6 +144,35 @@ class Comments extends React.Component {
               </form>
             </fieldset>
           )}
+          {comments && comments.length > 0 ? (
+            <ul>
+              {comments.map((comment) => (
+                <li key={comment.id} className="m-bottom-10">
+                  <div>
+                    <address className="fs-12">
+                      {comment.author.username}
+                    </address>
+
+                    <p className="fs-14 ">{comment.body}</p>
+                  </div>
+                  {user && user.username === comment.author.username ? (
+                    <button
+                      onClick={() => {
+                        this.handleDelete(comment.id);
+                      }}
+                      className="btn btn-danger"
+                    >
+                      <i className="fs-10 fa-solid fa-trash"></i>
+                    </button>
+                  ) : (
+                    ''
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No comments available.</p>
+          )}
         </div>
       </>
     );
@@ -184,4 +180,3 @@ class Comments extends React.Component {
 }
 
 export default withRouter(Comments);
-

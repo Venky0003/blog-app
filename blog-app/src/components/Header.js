@@ -84,13 +84,7 @@ function AuthHeader(props) {
         >
           {props.user.username}
         </NavLink>
-        {/* <NavLink
-          to={`/article/${article.slug}/edit`}
-          activeClassName="active"
-          className="m-left-15 text-gray fs-14 fw-500"
-        >
-         edit
-        </NavLink> */}
+      
       </div>
     </>
   );

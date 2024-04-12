@@ -51,7 +51,7 @@ class NewPost extends React.Component {
         return res.json();
       })
       .then(({ article }) => {
-        console.log(article);
+        // console.log(article);
         this.setState({
           title: '',
           description: '',

@@ -6,7 +6,10 @@ function Pagination(props) {
   let numberOfPages = Math.ceil(articlesCount / articlesPerPage);
   let pagesArray = [];
 
-  for (let i = 1; i <= numberOfPages; i++) {
+  let startPage = Math.max(activePage - 1, 1);
+  let endPage = Math.min(activePage + 9, numberOfPages);
+
+  for (let i = startPage; i <= endPage; i++) {
     pagesArray.push(i);
   }
 
@@ -18,6 +21,7 @@ function Pagination(props) {
           onClick={() =>
             updateCurrentPageIndex(activePage - 1 < 1 ? 1 : activePage - 1)
           }
+          disabled={activePage === 1}
         >
           Prev
         </button>
@@ -39,6 +43,7 @@ function Pagination(props) {
               activePage + 1 > numberOfPages ? numberOfPages : activePage + 1
             )
           }
+          disabled={activePage === numberOfPages}
         >
           Next
         </button>

@@ -9,7 +9,7 @@ import FullPageSpinner from './FullPageSpinner';
 import NewPost from './NewPost';
 import Profile1 from './Profile';
 import Settings from './Settings';
-// import Comments from './Comments';
+
 import { Switch, Route } from 'react-router-dom';
 import { localStorageKey, userVerifyURL } from '../utils/constant';
 import EditArticles from './EditArticles';
@@ -65,7 +65,9 @@ class App extends React.Component {
         {this.state.isLoggedIn ? (
           <AuthenticatedApp
             user={this.state.user}
+            author={this.state.author}
             updateUser={this.updateUser}
+            followAuthor={this.followAuthor}
           />
         ) : (
           <UnauthenticatedApp
@@ -94,15 +96,20 @@ function AuthenticatedApp(props) {
         <Route path="/article/:slug">
           <SinglePost user={props.user} />
         </Route>
+
         <Route
           path="/profiles/:username"
           render={(routeProps) => (
             <Profile1 {...routeProps} user={props.user} />
           )}
         />
-        <Route path="/article/:slug/edit">
-          <EditArticles user={props.user} />
-        </Route>
+        <Route
+          path="/article/:slug/edit-article"
+          render={(routeProps) => (
+            <EditArticles {...routeProps} user={props.user} />
+          )}
+        />
+
         <Route path="*">
           <NoMatch />
         </Route>

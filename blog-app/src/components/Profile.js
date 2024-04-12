@@ -18,11 +18,17 @@ class Profile extends React.Component {
     articlesPerPage: 10,
     userData: '',
     currentUsername: '',
+    author: null,
   };
 
   componentDidMount() {
+    if (this.state.userData) {
+      const { username } = this.state.userData;
+      this.fetchFollowStatus(username);
+    }
     const { username } = this.props.match.params;
     this.fetchUserData(username);
+
     this.fetchMyArticles();
   }
 
@@ -59,8 +65,14 @@ class Profile extends React.Component {
         if (data && data.profile) {
           const currentUsername = data.profile.username;
           this.setState(
-            { userData: data.profile, currentUsername, error: null },
+            {
+              userData: data.profile,
+              currentUsername,
+              author: data.profile,
+              error: null,
+            },
             () => {
+             
               if (this.state.selectedTab === 'myFeed') {
                 this.fetchMyArticles(currentUsername);
               } else {
@@ -93,7 +105,6 @@ class Profile extends React.Component {
       articlesUrl
     )
       .then((data) => {
-        // console.log('Data fetched successfully:', data);
         if (data && data.articles) {
           this.setState({
             myarticles: data.articles,
@@ -184,18 +195,63 @@ class Profile extends React.Component {
     return null;
   };
 
+  followAuthor = () => {
+    const { user } = this.props;
+    const { author } = this.state;
+    if (!user) {
+      alert('You have to log in first');
+      return;
+    }
+
+    if (!author) {
+      console.error('Author is not defined');
+      return;
+    }
+    fetch(`${ROOT_URL}/profiles/${author.username}/follow`, {
+      method: author.following ? 'DELETE' : 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Token ${user.token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("can't follow author");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        this.setState({
+          author: data.profile,
+        });
+        console.log(data.profile);
+      })
+      .catch((error) => {
+        this.setState({
+          error: "Can't follow author. Please try again later.",
+        });
+      });
+  };
+
   render() {
-    const { userData } = this.state;
+    const { userData, author } = this.state;
+    const { user } = this.props;
     return (
       <div>
         <div className="hero text-center">
           <img className="profile-img" src={userData.image} alt="user" />
 
           <h2>{userData.username}</h2>
-          {this.props.user?.username === userData.username && (
+          {user?.username === userData.username && (
             <Link to="/settings">
               <button>Edit Profile Settings</button>
             </Link>
+          )}
+
+          {this.props.user?.username !== userData.username && (
+            <button onClick={this.followAuthor}>
+              {author && author.following ? 'Unfollow Author' : 'Follow Author'}
+            </button>
           )}
         </div>
         <div className="container">

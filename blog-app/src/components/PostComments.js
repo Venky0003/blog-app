@@ -23,9 +23,7 @@ class PostComments extends React.Component {
       'Content-type': 'application/json',
     };
 
-    // if (this.props.user && this.props.user.token) {
-    //   headers.Authorization = `Token ${this.props.user.token}`;
-    // }
+
 
     fetch(addArticleURL + '/' + slug + '/comments', {
       method: 'GET',
@@ -56,19 +54,7 @@ class PostComments extends React.Component {
       <>
         <div>
           {comments && comments.length > 0 ? (
-            // <ul>
-            //   {comments.map((comment, i) => {
-            //     return (
-            //       <SingleComment
-            //         handleDelete={this.handleDelete}
-            //         user={this.props.user}
-            //         key={i}
-            //         comment={comment}
-            //       />
-            //     );
-            //   })}
-            // </ul>
-
+            
             <ul>
               {comments.map((comment) => (
                 <li key={comment.id}>

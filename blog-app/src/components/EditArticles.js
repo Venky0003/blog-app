@@ -1,54 +1,53 @@
 import React from 'react';
 import { articlesUrl } from '../utils/constant';
 import { withRouter } from 'react-router-dom';
+import validateForm from '../utils/validateForm';
 
 class EditArticles extends React.Component {
-  state = {
-    title: '',
-    description: '',
-    body: '',
-    tagList: '',
-    errors: '',
-  };
-  // }
-
-  // componentDidMount() {
-  //   const { article } = this.props;
-  //   if (article) {
-  //     let { title, description, body, tagList } = article;
-  //     this.setState({
-  //       title: title || '',
-  //       description: description || '',
-  //       tagList: tagList ? tagList.toString() : '',
-  //       body: body || '',
-  //     });
-  //   }
-  // }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.article !== this.props.article) {
-      const { title, description, body, tagList } = this.props.article;
-      this.setState({
-        title: title || '',
-        description: description || '',
-        body: body || '',
-        tagList: tagList ? tagList.toString() : '',
-      });
-    }
+  constructor() {
+    super();
+    this.state = {
+      title: '',
+      description: '',
+      body: '',
+      tagList: [],
+      errors: {
+        title: '',
+        description: '',
+        body: '',
+        tagList: '',
+      },
+    };
   }
 
   handleChange = (event) => {
     let { name, value } = event.target;
-
+    let errors = { ...this.state.errors };
+    validateForm(errors, name, value);
     this.setState({ [name]: value });
   };
+  handleTagsChange = (event) => {
+    const { value } = event.target;
+    const tagList = value.split(',').map((tag) => tag.trim());
+    this.setState({ tagList });
+  };
+  checkInput = () => {
+    let { title, description, tagList, body } = this.state;
+    if (!title || !description || !tagList || !body) {
+      this.setState({
+        error: 'all fields are required*',
+      });
+    }
+  };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  editArticle = () => {
     const { title, description, body, tagList } = this.state;
+
+    let slug = this.props.match.params.slug;
     const { article } = this.props;
     if (!article) return;
-    let slug = article.slug;
+
+    // console.log(articlesUrl);
     fetch(articlesUrl + '/' + slug, {
       method: 'PUT',
       headers: {
@@ -66,19 +65,17 @@ class EditArticles extends React.Component {
     })
       .then((res) => {
         if (!res.ok) {
-          return res.json().then(({ errors }) => {
-            return Promise.reject(errors);
-          });
+          throw new Error("can't edit article");
         }
         return res.json();
       })
       .then((article) => {
-        console.log(article);
-        this.props.history.push(`/articles/${article.slug}`);
+        // console.log('Article updated:', article);
+        this.props.history.push(`/`);
       })
-      .catch((error) => {  
-        console.error('Error fetching articles:', error);
-        this.setState({ errors: 'Failed to fetch articles.', articles: [] });
+      .catch((errors) => {
+        this.setState({ errors });
+        console.error('Error fetching articles:', errors);
       });
   };
   componentDidMount() {
@@ -86,15 +83,16 @@ class EditArticles extends React.Component {
     if (article) {
       let { title, description, body, tagList } = article;
       this.setState({
-        title: title || '',
-        description: description || '',
+        title: title,
+        description: description,
+        body: body,
         tagList: tagList ? tagList.toString() : '',
-        body: body || '',
       });
     }
   }
   render() {
     const { title, description, body, tagList, errors } = this.state;
+
     const { article } = this.props;
     if (!article) {
       return <div>Loading...</div>;
@@ -103,13 +101,20 @@ class EditArticles extends React.Component {
       <>
         <div>
           <div className="container text-center">
-            <form className="form-add-article" onSubmit={this.handleSubmit}>
+            <form
+              className="form-add-article"
+              onSubmit={(event) => {
+                event.preventDefault();
+                this.checkInput();
+                this.editArticle();
+              }}
+            >
               <input
                 name="title"
                 type="text"
                 className="form-control-1 fs-18"
                 value={title}
-                required
+                // required
                 onChange={this.handleChange}
                 placeholder="Article Title"
               />
@@ -139,9 +144,9 @@ class EditArticles extends React.Component {
               <span className="error fs-14">{errors.body}</span>
               <input
                 name="tagList"
-                type="text"    
+                type="text"
                 value={tagList}
-                onChange={this.handleChange}
+                onChange={this.handleTagsChange}
                 className="form-control-1 fs-15"
                 placeholder="Enter Tags"
               />
@@ -150,12 +155,12 @@ class EditArticles extends React.Component {
                 className="pull-right add-btn"
                 value="Update Artricle"
               />
-            </form>                                                         
-          </div> 
+            </form>
+          </div>
         </div>
       </>
     );
   }
-}    
-  
-export default withRouter(EditArticles); 
+}
+
+export default withRouter(EditArticles);
