@@ -6,8 +6,8 @@ import { loginURL } from '../utils/constant';
 
 class Login extends React.Component {
   state = {
-    email: 'venkat1@gmail.com',
-    password: 'venkat123',
+    email: '',
+    password:'',
     errors: {
       email: '',
       password: '',

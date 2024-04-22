@@ -123,7 +123,9 @@ class SinglePost extends React.Component {
         console.log(article);
         this.setState({
           article: article.article,
+          // console.log(article);
         });
+        console.log(article);
       })
       .catch((errors) => {
         this.setState({
