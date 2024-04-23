@@ -7,7 +7,7 @@ import NoMatch from './NoMatch';
 import SinglePost from './SinglePost';
 import FullPageSpinner from './FullPageSpinner';
 import NewPost from './NewPost';
-import Profile1 from './Profile';
+import Profile from './Profile';
 import Settings from './Settings';
 
 import { Switch, Route } from 'react-router-dom';
@@ -100,7 +100,7 @@ function AuthenticatedApp(props) {
         <Route
           path="/profiles/:username"
           render={(routeProps) => (
-            <Profile1 {...routeProps} user={props.user} />
+            <Profile {...routeProps} user={props.user} />
           )}
         />
         <Route
@@ -134,7 +134,7 @@ function UnauthenticatedApp(props) {
         <Route path="/article/:slug">
           <SinglePost user={props.user} />
         </Route>
-        <Route path="/profiles/:username" component={Profile1} />
+        <Route path="/profiles/:username" component={Profile} />
         <Route path="*">
           <NoMatch />
         </Route>
