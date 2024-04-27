@@ -9,6 +9,7 @@ import FullPageSpinner from './FullPageSpinner';
 import NewPost from './NewPost';
 import Profile from './Profile';
 import Settings from './Settings';
+
 import { Switch, Route } from 'react-router-dom';
 import { localStorageKey, userVerifyURL } from '../utils/constant';
 import EditArticles from './EditArticles';
