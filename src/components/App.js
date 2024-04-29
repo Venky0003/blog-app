@@ -9,8 +9,8 @@ import FullPageSpinner from './FullPageSpinner';
 import NewPost from './NewPost';
 import Profile from './Profile';
 import Settings from './Settings';
-import { Switch } from 'react-router-dom';
-import { Switch, Route } from 'react-router-dom';
+// import { Switch } from 'react-router-dom';
+import { Routes,Route } from 'react-router-dom';
 import { localStorageKey, userVerifyURL } from '../utils/constant';
 import EditArticles from './EditArticles';
 
@@ -83,7 +83,7 @@ class App extends React.Component {
 function AuthenticatedApp(props) {
   return (
     <>
-      <Switch>
+      <Routes>
         <Route exact path="/">
           <Home user={props.user} />
         </Route>
@@ -111,7 +111,7 @@ function AuthenticatedApp(props) {
         <Route path="*">
           <NoMatch />
         </Route>
-      </Switch>
+      </Routes>
     </>
   );
 }
@@ -119,7 +119,7 @@ function AuthenticatedApp(props) {
 function UnauthenticatedApp(props) {
   return (
     <>
-      <Switch>
+      <Routes>
         <Route exact path="/">
           <Home />
         </Route>
@@ -136,7 +136,7 @@ function UnauthenticatedApp(props) {
         <Route path="*">
           <NoMatch />
         </Route>
-      </Switch>
+      </Routes>
     </>
   );
 }
