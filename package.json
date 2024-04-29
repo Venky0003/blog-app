@@ -2,7 +2,7 @@
   "name": "blog-app",
   "version": "0.1.0",
   "private": true,
-  "main":"src/App.js",
+  "main": "src/App.js",
   "homepage": "https://Venky0003.github.io/blog-app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
