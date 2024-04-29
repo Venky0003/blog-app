@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { addArticleURL } from '../utils/constant';
 
 class Comments extends React.Component {

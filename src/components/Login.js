@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import validate from '../utils/validate';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { loginURL } from '../utils/constant';
 
 class Login extends React.Component {

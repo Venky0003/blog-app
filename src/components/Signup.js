@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import validate from '../utils/validate';
 import { signupURL } from '../utils/constant';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 class Signup extends React.Component {
   state = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { addArticleURL, localStorageKey } from '../utils/constant';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import validateForm from '../utils/validateForm';
 
 class NewPost extends React.Component {

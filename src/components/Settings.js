@@ -1,6 +1,6 @@
 import React from 'react';
 import { ROOT_URL, localStorageKey } from '../utils/constant';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 class Settings extends React.Component {
   state = {

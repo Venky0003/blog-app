@@ -1,6 +1,6 @@
 import React from 'react';
 import { articlesUrl } from '../utils/constant';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import validateForm from '../utils/validateForm';
 
 class EditArticles extends React.Component {
