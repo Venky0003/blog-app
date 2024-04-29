@@ -2,7 +2,7 @@ import React from 'react';
 import { ROOT_URL, articlesUrl } from '../utils/constant';
 import Loader from './Loader';
 import Comments from './Comments';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router';
 
 import EditArticles from './EditArticles';
 

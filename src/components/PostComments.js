@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import { addArticleURL } from '../utils/constant';
 
 class PostComments extends React.Component {
